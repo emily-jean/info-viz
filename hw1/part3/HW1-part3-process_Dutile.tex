@@ -9,6 +9,7 @@
 \graphicspath{ {images/} }
 \everymath{\displaystyle}
 
+
 % Professor/Course information
 \title{Homework 1 - Part 3}
 \author{Emily Dutile}
@@ -20,28 +21,38 @@
 
 \section*{Who is CS7295}
 
-\subsection*{2. Data Type}
+\subsection*{2. Data Types}
 
-City - categorical \\
-Country - categorical \\ 
-State - categorical \\
-Native language - categorical \\
-Languages known other than English - categorical \\
-Preferred OS - categorical \\
-Mobile OS - categorical \\
-Favorite language - categorical \\
-Chocolate or Vanilla - categorical \\
-Preferred OS - categorical \\
-Color - categorical \\
-Favorite number - categorical \\
-Temperate - quantitative \\
-Amount of coffee - quantitative \\
-Wake up - quantitative \\
-To bed - quantitative \\
-Visual encoding - quantitative
+\begin{center}
+Table 1: Data Types
+\end{center}
+\begin{center} 
+\begin{tabular}[h]{l l l l}
+\textbf{Column} & \textbf{Data Type} \\
+City & categorical \\
+Country & categorical \\ 
+State & categorical \\
+Native language & categorical \\
+Languages known other than English & categorical \\
+Preferred OS & categorical \\
+Mobile OS & categorical \\
+Favorite language & categorical \\
+Chocolate or Vanilla & categorical \\
+Preferred OS & categorical \\
+Color & categorical \\
+Favorite number & categorical \\
+Temperate & quantitative \\
+Amount of coffee & quantitative \\
+Wake up & quantitative \\
+To bed & quantitative \\
+Visual encoding & quantitative
+\end{tabular}
+\end{center}
 
 \subsection*{4. Data Clean-Up}
-To clean up the data, the data was exported to a new excel spreadsheet. Categorical data such as the Country which varied in naming convention (i.e.: USA vs United States) was manually corrected to be one category. In the category "what other languages do you speak besides English", I filled in blank values with None and also made multi-lingual students have comma separated values for languages. State abbreviations were spelled out as well or no values were changes to 'NA'. Some preprocessing was done around lengthy answers related to Mobile OS preference and removing words such as 'degrees'. Exclamation points were removed, numbers that were spelled out were many quantitative, and any temperature listed in something other than Fahrenheit was converted.
+To clean up the data, the data was exported to a new excel spreadsheet. Column names were shortened for readability, categorical data was made the same (i.e.: USA vs. United States), null values were filled with None or NA, verbose answers were shorted, state abbreviations were spelled out, degrees were converted to Farenheight if necessary, exclamation points were removed, and numbers that were spelled out were many quantitative.\\
+
+If this was a much larger data set, I would have wrote a web crawler in python using the BeautifulSoup library to extract the html and parse the desired text. Since there is no student name in the original dataset, joining would be difficult without a given key, so this step would be kept manual for sake of time.
 
 \subsection*{6. Data Gathering}
 From Piazza I compared the information hints as to what text blurb matched with the data in the csv. I simply inserted two rows for department (CCIS or other) and what degree program the individual is pursuing. There wasn't a great deal of cleaning the data here.
@@ -57,7 +68,7 @@ There seems to be a high correlation between individuals that go to bed around 1
 Is there a typical “profile” for someone who prefers to use a mobile phone with an
 Android versus Apple OS?
 
-\subsection*{8. Additional Questions & Visualizations}
+\subsection*{8. Additional Questions and Visualizations}
 
 
 \subsubsection*{8.1}
