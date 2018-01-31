@@ -43,9 +43,9 @@ Color & categorical \\
 Favorite number & categorical \\
 Temperate & quantitative \\
 Amount of coffee & quantitative \\
-Wake up & quantitative \\
-To bed & quantitative \\
-Visual encoding & quantitative
+Wake up & ordinal \\
+To bed & ordinal \\
+Visual encoding & category
 \end{tabular}
 \end{center}
 
@@ -62,38 +62,80 @@ From Piazza I compared the information hints as to what text blurb matched with 
 \subsubsection*{7.1}
 Is there a correlation between bedtime and coffee consumption? Please see Appendices for visual.\\
 
-There seems to be a high correlation between individuals that go to bed around 1am and the amount of coffee consumed. Overall, it appears that individuals who go to bed earlier at night seem to consume less coffee.
+There seems to be a higher correlation between individuals that go to bed late at night (or very early in the morning) and the amount of coffee consumed. Overall, it appears that individuals who go to bed earlier at night seem to consume less coffee.
 
 \subsubsection*{7.2}
-Is there a typical “profile” for someone who prefers to use a mobile phone with an
-Android versus Apple OS?
+Is there a typical “profile” for someone who prefers to use a mobile phone with an Android versus Apple OS?\\
+
+It appears that if you prefer Apple iOS for your mobile device, there's a strong chance that you prefer/use Apple OS as well. The results are biased towards students in the US since there are more US students in the data. If you prefer Android, you probably prefer Windows (Linux/Unix is close). Both profiles seems to prefer python as well.
 
 \subsection*{8. Additional Questions and Visualizations}
 
 
 \subsubsection*{8.1}
-Is there a correlation between preferred programming language and preferred OS? Please see Appendices for visual.\\
 
-@TODO - justify your choice of visual encoding and visualization design choices (i.e., marks, channels,
-perceptual ordering, etc.
+What parts of the world do the students of CS7295 represent?\\
+
+I chose to use a map in order to visualize the areas in which students come from. I thought that using anything more than one color would add undesired interpretation since I am simply illuminating parts of the world where students are from.
+
 
 \subsubsection*{8.2}
-What percentage of the class speaks another language if their native language is not English? Please see Appendices for visual.\\
+What are students favorite color? \\
 
-@TODO - justify your choice of visual encoding and visualization design choices (i.e., marks, channels,
-perceptual ordering, etc.
+I thought that utilizing an area chart would easily show the popularity of colors (by mark and channel). Making each box based on the actual color made it quicker to read at a glance, rather than using simply text.
+
 
 \subsubsection*{8.3}
-Are students sleeping enough? Please see Appendices for visual.\\
+What percentage of students are bilingual? Please see Appendices for visual.\\
+
+I chose to use a pie chart with 2 attributes encoded, area and color in order to show the number of bilingual students in the class. The angle easily shows that nearly 75\% of the class is bilingual.
+
+\newpage
 
 \appendix
 \section{Appendices}
 
-\subsection*{7.1}
 \begin{figure}[h]
 \centering
 {
 \includegraphics[width=0.7\linewidth]{bedtime_coffee}
+}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+{
+\includegraphics[width=0.7\linewidth]{profile}
+}
+\end{figure}
+
+
+\begin{figure}[h]
+\centering
+{
+\includegraphics[width=0.7\linewidth]{map}
+}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+{
+\includegraphics[width=0.7\linewidth]{cities}
+}
+\end{figure}
+
+
+\begin{figure}[h]
+\centering
+{
+\includegraphics[width=0.7\linewidth]{colors}
+}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+{
+\includegraphics[width=0.4\linewidth]{languages}
 }
 \end{figure}
 

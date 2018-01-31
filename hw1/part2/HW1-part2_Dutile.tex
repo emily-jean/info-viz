@@ -22,47 +22,72 @@
 
 \subsection*{1. Lie Factor}
 
-There is no lie factor here because it is 2D data (altitude and mountain) represented by a 2D image. The scale on the left is in increments of 5,000 ft, while the scale on the right is in meters. Since the lines of the scale don't perfectly line up, the scales do actually represent the data. For example, 8,000 m is roughly 26,246 ft. As we can see, the 8,000 m line is slightly above 25,000 ft. Due to this, there doesn't seem to be a lie factor.
+Lie Factor = $ \frac{(2.5 - 1.3)}{1.3} * 100 = 92.3 $
+\\
+
+Lie Factor = $ \frac{(29035 - 13519)}{13519} * 100 = 114.71 $
+\\
+
+Lie Factor = $ \frac{92.3}{114.7} = 80.5 $
+\\
+
+There is a very small lie factor here with the 2D data (altitude and mountain) represented by a 2D image. The scale on the left is in increments of 5,000 ft, while the scale on the right is in meters. Since the lines of the scale don't perfectly line up, the scales do accurately represent the data. For example, 8,000 m is roughly 26,246 ft. As we can see, the 8,000 m line is slightly above 25,000 ft. Due to this, our lie factor that is slightly underestimating our visual seems correct.
 
 
 \subsection*{2. Design Critique}
 
-The Se7en Summits creatively and accurately represents the seven summits of the tallest mountains on each continent. This visualization is similar to a bar chart. Here, we have two attributes encoded: a line mark with the vertical spacial position channel for the elevation in feet/meters and the horizontal spatial position channel is for the mountain. These two channels are representing our quantitative and categorical attribute respectively. The data, which is the altitude of mountains illustrated through the use of triangles, are line markers. In order to identify each mountain, the author creatively  uses different mountain images which all have somewhat unique characteristics and colors. Over all, this visual is very creative, accurate, and a bit difficult to critique. One change I would make visually is to make the background a bit darker in comparison to the white text, frame, and grid lines. The use of the text boxes above the mountain makes it easy to identify the mountain, location, and it's elevation. The second visual below the chart representing the prominence rank in the world is easy to under stand and it doesn't get lost in the bold images. If it weren't a requirement, I would remove one scale and keep it to either feet or meters The conversion of feet to meters would be kept in the textbox. We could also consider reordering the mountains in ranking order in order to not have a ranking centered under the Great Pyramid of Giza.
+The Se7en Summits creatively and accurately represents the seven summits of the tallest mountains on each continent. This visualization is similar to a bar chart. Here, we have two attributes encoded: a line mark with the vertical spacial position channel for the elevation in feet/meters and the horizontal spatial position channel is for the mountain. These two channels are representing our quantitative and categorical attribute respectively. The data, which is the altitude of mountains illustrated through the use of triangles (shape) and area (size), are line markers. In order to identify each mountain, the author creatively  uses different mountain images which all have somewhat unique characteristics and colors for the channel. Over all, this visual is very creative, accurate, and a bit difficult to critique. One change I would make visually is to make the background a bit darker in comparison to the white text, frame, and grid lines. The use of the text boxes above the mountain makes it easy to identify the mountain, location, and it's elevation. The second visual below the chart representing the prominence rank in the world is easy to under stand and it doesn't get lost in the bold images. If it weren't a requirement, I would remove one scale and keep it to either feet or meters The conversion of feet to meters would be kept in the textbox. We could also consider reordering the mountains in ranking order in order to not have a ranking centered under the Great Pyramid of Giza.
 
 
 \subsection*{3. Re-design}
 
-\begin{figure}[h]
-\centering
-{
-\includegraphics[width=0.6\linewidth]{part2_1}
-}
-\end{figure}
+Please see appendices for redesign.
+
 
 
 \section*{Visualization 2}
 
 \subsection*{1. Lie Factor}
 
-@TODO
+Lie Factor = $ \frac{(3.0-.5)}{.5} * 100 = 500 $
+\\
 
-$ Lie factor = $
+Lie Factor = $ \frac{(3500000 - 750000)}{750000} * 100 = 366.67 $
+\\
 
+Lie Factor = $ \frac{500}{366.67} = 1.36 $
+\\
 
 \subsection*{2. Design Critique}
 
 @TODO - data encoding (marks, channels).
 
-In general, adding additional dimensions to the data just adds clutter and confusion most visualizations, and this is a good unjustified 3D example. It makes it harder to quickly and accurately analyze the data when 3D is not needed. To improve this visualization, I would change it to a line plot to show the decreasing number of specific fish in the sea in the time series. This could be done with different line colors to represent as the author looked to do. I would remove the colorful table of the fish counts all together or at least remove the color. The shading seems like it should be associated with the plot, but it doesn't - it is only the fish color on the left hand side. These line plots could be represented as one graph, or 5 graphs with the same scale. I think the most effective way would be a stacked bar chart in order to show the total fish population count, and then showing the different fish categories by the given color. The table could be kept to give more granular information. By removing the 3D chart which is more difficult due to the perspective distortion and occlusion, this visualization can become cleaner and more effective.
-
+In general, adding additional dimensions (volume) to the data just adds clutter and confusion most visualizations, and this is a good unjustified 3D example. It makes it harder to quickly and accurately analyze the data when 3D is not needed. To improve this visualization, I would keep the marks as lines but change it to a line plot to show the decreasing number of specific fish in the sea in the time series and also keeping the horizontal and vertical position. This could be done with different line colors to represent as the author looked to do. I would remove the colorful table of the fish counts all together or at least remove the color. The shading seems like it should be associated with the plot, but it doesn't - it is only the fish color on the left hand side. These line plots could be represented as one graph, or 5 graphs with the same scale. I think the most effective way would be a stacked bar chart in order to show the total fish population count, and then showing the different fish categories by the given color. The table could be kept to give more granular information. By removing the 3D chart which is more difficult due to the perspective distortion and occlusion, this visualization can become cleaner and more effective.
 
 
 \subsection*{3. Re-design}
 
+Please see appendices for redesign.
+
+
+
+\newpage
+
+\appendix
+\section{Appendices}
+
 \begin{figure}[h]
 \centering
 {
-\includegraphics[width=0.5\linewidth]{part2_2}
+\includegraphics[width=0.5\linewidth]{part2_1}
+}
+\end{figure}
+
+
+\begin{figure}[h]
+\centering
+{
+\includegraphics[width=0.4\linewidth]{part2_2}
 }
 \end{figure}
 
