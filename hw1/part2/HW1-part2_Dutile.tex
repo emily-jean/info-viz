@@ -22,16 +22,18 @@
 
 \subsection*{1. Lie Factor}
 
-Lie Factor = $ \frac{(2.5 - 1.3)}{1.3} * 100 = 92.3 $
+Taking the largest peak and comparing it with the smallest (measurable) peak, we get the following:\\
+
+Lie Factor = $ \frac{(2.2 - 1.2)}{1.2} * 100 = 83.33 $
 \\
 
-Lie Factor = $ \frac{(29035 - 13519)}{13519} * 100 = 114.71 $
+Lie Factor = $ \frac{(29035 - 16024)}{16024} * 100 = 81.2 $
 \\
 
-Lie Factor = $ \frac{92.3}{114.7} = 80.5 $
+Lie Factor = $ \frac{83.33}{81.2} = 1.03 $
 \\
 
-There is a very small lie factor here with the 2D data (altitude and mountain) represented by a 2D image. The scale on the left is in increments of 5,000 ft, while the scale on the right is in meters. Since the lines of the scale don't perfectly line up, the scales do accurately represent the data. For example, 8,000 m is roughly 26,246 ft. As we can see, the 8,000 m line is slightly above 25,000 ft. Due to this, our lie factor that is slightly underestimating our visual seems correct.
+There is a very small, to what I would consider, no lie factor here with the 2D data (altitude and mountain) represented by a 2D image. The scale on the left is in increments of 5,000 ft, while the scale on the right is in meters. Since the lines of the scale don't perfectly line up, the scales do accurately represent the data. For example, 8,000 m is roughly 26,246 ft. As we can see, the 8,000 m line is slightly above 25,000 ft. Due to this, our lie factor is  very slightly over 1 isn't over or understanding the data in the visual.
 
 
 \subsection*{2. Design Critique}
@@ -49,7 +51,9 @@ Please see appendices for redesign.
 
 \subsection*{1. Lie Factor}
 
-Lie Factor = $ \frac{(3.0-.5)}{.5} * 100 = 500 $
+Looking at the peak of the Atlantic Cod and the lowest point, we calculate the following lie factor:\\
+
+Lie Factor = $ \frac{(3.0-0.5)}{0.5} * 100 = 500 $
 \\
 
 Lie Factor = $ \frac{(3500000 - 750000)}{750000} * 100 = 366.67 $
@@ -59,8 +63,6 @@ Lie Factor = $ \frac{500}{366.67} = 1.36 $
 \\
 
 \subsection*{2. Design Critique}
-
-@TODO - data encoding (marks, channels).
 
 In general, adding additional dimensions (volume) to the data just adds clutter and confusion most visualizations, and this is a good unjustified 3D example. It makes it harder to quickly and accurately analyze the data when 3D is not needed. To improve this visualization, I would keep the marks as lines but change it to a line plot to show the decreasing number of specific fish in the sea in the time series and also keeping the horizontal and vertical position. This could be done with different line colors to represent as the author looked to do. I would remove the colorful table of the fish counts all together or at least remove the color. The shading seems like it should be associated with the plot, but it doesn't - it is only the fish color on the left hand side. These line plots could be represented as one graph, or 5 graphs with the same scale. I think the most effective way would be a stacked bar chart in order to show the total fish population count, and then showing the different fish categories by the given color. The table could be kept to give more granular information. By removing the 3D chart which is more difficult due to the perspective distortion and occlusion, this visualization can become cleaner and more effective.
 

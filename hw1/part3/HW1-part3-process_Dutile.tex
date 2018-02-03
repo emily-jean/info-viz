@@ -50,7 +50,7 @@ Visual encoding & category
 \end{center}
 
 \subsection*{4. Data Clean-Up}
-To clean up the data, the data was exported to a new excel spreadsheet. Column names were shortened for readability, categorical data was made the same (i.e.: USA vs. United States), null values were filled with None or NA, verbose answers were shorted, state abbreviations were spelled out, degrees were converted to Farenheight if necessary, exclamation points were removed, and numbers that were spelled out were many quantitative.\\
+To clean up the data, the data was exported to a new excel spreadsheet. Column names were shortened for readability, categorical data was made the same (i.e.: USA vs. United States), null values were filled with None or NA, verbose answers were shorted, state abbreviations were spelled out, string values were capitalized, degrees were converted to Farenheight if necessary, exclamation points were removed, and numbers that were spelled out were made quantitative.\\
 
 If this was a much larger data set, I would have wrote a web crawler in python using the BeautifulSoup library to extract the html and parse the desired text. Since there is no student name in the original dataset, joining would be difficult without a given key, so this step would be kept manual for sake of time.
 
@@ -62,7 +62,9 @@ From Piazza I compared the information hints as to what text blurb matched with 
 \subsubsection*{7.1}
 Is there a correlation between bedtime and coffee consumption? Please see Appendices for visual.\\
 
-There seems to be a higher correlation between individuals that go to bed late at night (or very early in the morning) and the amount of coffee consumed. Overall, it appears that individuals who go to bed earlier at night seem to consume less coffee.
+There seems to be a slight correlation between individuals that go to bed late at night (or very early in the morning) and the amount of coffee consumed. Overall, it appears that individuals who go to bed earlier at night seem to consume less coffee.\\
+
+I chose to use a scatter plot to show the individual points on the horizontal and vertical channel with a blue circle mark. The plot ranges from 12AM to 11PM EST.
 
 \subsubsection*{7.2}
 Is there a typical “profile” for someone who prefers to use a mobile phone with an Android versus Apple OS?\\
@@ -98,7 +100,7 @@ I chose to use a pie chart with 2 attributes encoded, area and color in order to
 \begin{figure}[h]
 \centering
 {
-\includegraphics[width=0.7\linewidth]{bedtime_coffee}
+\includegraphics[width=0.7\linewidth]{coffeevsbedtime}
 }
 \end{figure}
 
