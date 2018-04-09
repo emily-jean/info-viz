@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Energy Generation ('09)</title>
+
+    <style>
+        body {
+            font: 10px sans-serif;
+        }
+
+        .title {
+            font-size:14px;
+            text-align: center;
+        }
+
+        .brush .extent {
+            stroke: gray;
+            fill-opacity: .125;
+            shape-rendering: crispEdges;
+        }
+
+        .tooltip {
+            position: absolute;
+            padding: 12px;
+            background-color: darkslategray;
+            color:white;
+            border-radius: 2px;
+        }
+
+    </style>
+
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <script>
+        // create vars for container and svg details
+        var height = 310;
+        var width = 850;
+        var margin = {left:120,right:80,top:80,bottom:120};
+        var color = d3.rgb("#000000");
+        var color2 = d3.rgb("#a9a9a9");
+
+        // read in the data the create svg charts
+        d3.csv("https://raw.githubusercontent.com/emily-jean/info-viz/master/hw5/data2.csv")
+            .row(function(d){
+                return {
+                    biomass: Number(d["2009 MWh Generation Biomass"]),
+                    nuclear: Number(d.Nuclear),
+                    state: d.State,
+                    region: d.Region,
+                    nonHydro: Number(d["2009 Total Non-Hydro RE Generation (MWh)"]),
+                    hydro: Number(d["2009 Total RE Generation (MWh)"]),
+                    total: Number(d["2009 Total Generation (MWh)"])
+                };
+            }).get(function(error,data){
+                var svg = d3.select("#container1")
+                    .append("svg")
+                    .attr("width",width)
+                    .attr("height",height);
+
+                var xScaleNew = d3.scaleBand()
+                    .domain(data.map(function(d) { return d.state; }))
+                    .rangeRound([margin.left, width - margin.right]).padding(0.1);
+
+                var yScaleNew = d3.scaleLinear()
+                    .domain([d3.min(data, function(d) {return d.total-1000000;}),
+                        d3.max(data, function(d) {return d.total+1000000;})
+                    ])
+                    .range([height-margin.bottom, margin.top]);
+
+                var xAxisNew = svg.append("g")
+                    .attr("class","axis")
+                    .attr("transform","translate(0,"+(height-margin.bottom)+")")
+                    .call(d3.axisBottom().scale(xScaleNew))
+                    .selectAll("text")
+                    .style("text-anchor", "end")
+                    .attr("dx", "-.8em")
+                    .attr("dy", "-.5em")
+                    .attr("transform", "rotate(-90)");
+
+
+                var yAxisNew = svg.append("g")
+                    .attr("class","axis")
+                    .attr("transform","translate("+margin.left+",0)")
+                    .call(d3.axisLeft().scale(yScaleNew).ticks(5));
+
+
+                // x and y axis labels
+                svg.append("text")
+                    .attr("class","label")
+                    .attr("transform","translate(" + (width/2) + " ," + (height-8) + ")")
+                    .style("text-anchor", "middle")
+                    .text("State");
+
+                svg.append("text")
+                    .attr("class","label")
+                    .attr("transform", "translate(0,"+ (height/2)+") rotate(-90)")
+                    .attr("dy", "2.5em")
+                    .style("text-anchor", "middle")
+                    .text("Energy Generation (MWh)");
+
+
+                var barWidth = 20;
+                var barPadding = 1;
+                var bars = svg.selectAll("rect")
+                    .data(data)
+                    .enter()
+                    .append("rect")
+                    .attr("x", function(d){
+                        return xScaleNew(d.state);
+                    })
+                    .attr("y", function(d){ return yScaleNew(d.total); })
+                    .attr("width", xScaleNew.bandwidth())
+                    .attr("height",function(d){
+                        return height-margin.bottom - yScaleNew(d.total);
+                    })
+                    .style("fill",color)
+                    .attr("class", "non_brushed");
+                createScatter(data);
+
+                // brushing
+                function highlightBrushedBars() {
+                    if (d3.event.selection != null) {
+                        bars.style("fill",color)
+                            .attr("class", "non_brushed");
+
+                        var brush_coords = d3.brushSelection(this);
+                        bars.filter(function (){
+                            var x = Number(d3.select(this).attr("x")),
+                                y = Number(d3.select(this).attr("y"));
+                            h = Number(d3.select(this).attr("height"));
+                            w = Number(d3.select(this).attr("width"));
+                            return isBrushed(brush_coords, x, y, x+w, y+h);
+                        })
+                        //brushed view
+                            .style("fill",color2)
+                            .style("opacity", 1.0)
+                            .attr("class", "brushed");
+                    }
+                }
+
+                function linkedView() {
+                    if (!d3.event.selection){
+                        bars.style("fill",color);
+                        clearScatterPlot();
+                        createScatter(data);
+                    }
+                    else {
+                        var d_brushed =  d3.selectAll(".brushed").data();
+                        // populate scatter plot if one or more elements is brushed
+                        if (d_brushed.length > 0) {
+                            clearScatterPlot();
+                            createScatter(d_brushed);
+                        } else {
+                            clearScatterPlot();
+                        }
+                    }
+                }
+
+                var brush = d3.brush()
+                    .on("brush", highlightBrushedBars)
+                    .on("end", linkedView);
+
+                svg.append("g")
+                    .call(brush);
+
+
+                function isBrushed(brush_coords, xa, ya,xb,yb) {
+                    var x0 = brush_coords[0][0],
+                        x1 = brush_coords[1][0],
+                        y0 = brush_coords[0][1],
+                        y1 = brush_coords[1][1];
+                    return x0<=xa && xb<=x1;
+                }
+
+
+                function showDiv() {
+                    d3.select("#container2").style("display", "inline");
+                }
+
+                function createScatter(d_brushed) {
+
+                    showDiv();
+                    width = 850;
+
+                    var data2 = d_brushed;
+                    var tooltip = d3.select("#container").append("div")
+                        .attr("class", "tooltip")
+                        .style("opacity", 0);
+
+                    var svg2 = d3.select("#container2")
+                        .append("svg")
+                        .attr("width",width)
+                        .attr("height",height)
+                        .attr("class","svgNew");
+
+                    var xScale = d3.scaleLinear()
+                        .domain([d3.min(data2, function(d) {
+                            return d.nuclear-10000000;
+                        }),
+                            d3.max(data2, function(d) {
+                                return d.nuclear+10000000;
+                            })
+                        ]).range([margin.left, width - margin.right]);
+
+                    var yScale = d3.scaleLinear()
+                        .domain([d3.min(data2, function(d) {return d.biomass;})
+                            ,d3.max(data2, function(d) {return d.biomass;})])
+                        .range([height-margin.bottom, margin.top]);
+
+
+                    var xAxis = svg2.append("g")
+                        .attr("class", "axis")
+                        .attr("transform","translate(0,"+(height-margin.bottom)+")")
+                        .call(d3.axisBottom().scale(xScale).ticks(5).tickPadding(5));
+
+
+                    var yAxis = svg2.append("g")
+                        .attr("class", "axis")
+                        .attr("transform","translate("+margin.left+",0)")
+                        .call(d3.axisLeft().scale(yScale).ticks(5).tickPadding(5));
+
+
+                    var circles = svg2.selectAll("circle")
+                        .data(data2)
+                        .enter()
+                        .append("circle")
+                        .attr("cx", function(d){ return xScale(d.nuclear); })
+                        .attr("cy", function(d){ return yScale(d.biomass); })
+                        .attr("r",3.5)
+                        .style('fill',color)
+                        .style("stroke","black")
+                        .on("mouseover", function(d){
+                            d3.select(this)
+                                .style("fill",color2)
+                                .style("stroke",color2);
+
+                            var html  = d.state +
+                                "<br><b>Non-hydro RE: </b>"+d.nonHydro+"<br>"+
+                                "<b>RE: </b>"+d.hydro; // +" - "+ d.region+ " Region<br>"
+
+                            //create tooltip
+                            tooltip.html(html)
+                                .style("left", (d3.event.pageX + 15) + "px")
+                                .style("top", (d3.event.pageY - 28) + "px")
+                                .transition()
+                                .duration(200)
+                                .style("opacity", 0.9)
+
+                        })
+                        .on("mouseout", function(d){
+                            d3.select(this)
+                                .style("fill",color)
+                                .style("stroke","black");
+                            tooltip.transition()
+                                .duration(300) // ms
+                                .style("opacity", 0);
+                        });
+
+                    // label text
+                    svg2.append("text")
+                        .attr("class","label")
+                        .attr("transform","translate(" + (width/2+(margin.left-margin.right)) + " ," + (height-70) + ")")
+                        .style("text-anchor", "middle")
+                        .text("Nuclear Generation (MWh)");
+                    svg2.append("text")
+                        .attr("class","label")
+                        .attr("transform", "translate(0,"+ (height/2)+") rotate(-90)")
+                        .attr("dy", "2.5em")
+                        .style("text-anchor", "middle")
+                        .text("Biomass Generation (MWh)");
+                }
+            });
+
+        function clearScatterPlot() {
+            d3.selectAll(".svgNew").remove();
+        }
+
+
+    </script>
+
+</head>
+<body>
+
+<div class="title">Energy Generation by State (2009)</div>
+<div>Looking at the Energy Generation by State accross the United States in 2009,
+        the bar chart shows the total renewable energy and non-renewable energy generation. In the scatter plot, we're
+        looking at the biomass and the nuclear energy generation during the same time period, with each state a circle.
+        Overall, there looks to be a positive correlation between biomass and nuclear energy generation.</div>
+<div id="container"></div>
+<div id="container1"></div>
+<div id="container2"></div>
+</body>
+</html>
