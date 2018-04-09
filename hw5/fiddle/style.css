@@ -1,0 +1,77 @@
+#container {
+    position: fixed;
+    top: 100px;
+    bottom: 30px;
+    left: 30px;
+    right: 30px;
+}
+
+body {
+    font: 10px sans-serif;
+}
+
+#title {
+    font-size:14px;
+    text-align: center;
+}
+
+#data {
+    text-align: center;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.dot {
+    fill: black;
+}
+
+/* The following CSS is for brushing,
+* adapted from http://bl.ocks.org/mbostock/4343214 */
+.dot.selected {
+    fill: blue;
+}
+
+.brush .extent {
+    stroke: gray;
+    fill-opacity: .125;
+    shape-rendering: crispEdges;
+}
+
+.bar:hover {
+    fill: red;
+}
+
+/* for the tooltip*/
+.d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+    box-sizing: border-box;
+    display: inline;
+    font-size: 10px;
+    width: 100%;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.8);
+    content: "\25BC";
+    position: absolute;
+    text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+    margin: -1px 0 0 0;
+    top: 100%;
+    left: 0;
+}
